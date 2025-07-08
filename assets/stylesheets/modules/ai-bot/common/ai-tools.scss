@@ -1,4 +1,4 @@
-@use "lib/viewport";
+@import "lib/viewport";
 
 .ai-tool-parameter {
   padding: 1.5em;
@@ -29,7 +29,7 @@
 }
 
 .ai-tool-editor {
-  @include viewport.from(lg) {
+  @include from(lg) {
     max-width: 80%;
   }
   position: relative;

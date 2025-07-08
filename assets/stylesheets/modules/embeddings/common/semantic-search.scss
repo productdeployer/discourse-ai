@@ -1,16 +1,16 @@
-@use "lib/viewport";
+@import "lib/viewport";
 
 .semantic-search__container {
   margin: 1rem 0 0 0;
 
   .has-sidebar-page & {
-    @include viewport.until(lg) {
+    @include until(lg) {
       border-top: 1px solid var(--primary-low);
     }
   }
 
   body:not(.has-sidebar-page) & {
-    @include viewport.until(md) {
+    @include until(md) {
       border-top: 1px solid var(--primary-low);
     }
   }
@@ -90,7 +90,7 @@
   }
 }
 
-@include viewport.until(md) {
+@include until(md) {
   .search-container .search-advanced .semantic-search__container {
     + .search-info {
       padding-inline: 1rem;

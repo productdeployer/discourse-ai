@@ -1,4 +1,4 @@
-@use "lib/viewport";
+@import "lib/viewport";
 
 // Hide the new question button from the hamburger menu's footer on desktop
 .desktop-view .hamburger-panel .ai-new-question-button {
@@ -110,7 +110,7 @@ body.has-ai-conversations-sidebar {
     display: none;
   }
 
-  @include viewport.until(lg) {
+  @include until(lg) {
     .archetype-private_message .topic-post:last-child {
       margin-bottom: 0;
     }
@@ -149,7 +149,7 @@ body.has-ai-conversations-sidebar {
         flex-direction: column;
         min-width: 0;
 
-        @include viewport.until(sm) {
+        @include until(sm) {
           .select-kit-header-wrapper {
             font-size: var(--font-down-1);
           }
@@ -227,7 +227,7 @@ body.has-ai-conversations-sidebar {
         background: var(--primary-very-low);
       }
 
-      @include viewport.from(sm) {
+      @include from(sm) {
         width: 80%;
         max-width: var(--input-max-width);
       }
@@ -343,7 +343,7 @@ body.has-ai-conversations-sidebar {
       color: var(--primary-700);
       margin: 0;
 
-      @include viewport.from(sm) {
+      @include from(sm) {
         width: 80%;
         max-width: var(--input-max-width);
       }
@@ -371,7 +371,7 @@ body.has-ai-conversations-sidebar {
       flex-wrap: wrap;
       gap: 0.5em;
 
-      @include viewport.from(sm) {
+      @include from(sm) {
         width: 80%;
         max-width: var(--input-max-width);
       }
@@ -399,7 +399,7 @@ body.has-ai-conversations-sidebar {
     }
   }
 
-  @include viewport.until(sm) {
+  @include until(sm) {
     .share-ai-conversation-button {
       .d-icon {
         margin: 0;
@@ -463,7 +463,7 @@ body.has-ai-conversations-sidebar {
     &__contents {
       padding: 0.5em 1.25em;
 
-      @include viewport.from(sm) {
+      @include from(sm) {
         padding: 0.5em 0.5em 0.5em 1.9em;
       }
     }

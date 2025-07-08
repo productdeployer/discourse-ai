@@ -1,4 +1,4 @@
-@use "lib/viewport";
+@import "lib/viewport";
 
 @keyframes fade-in {
   from {
@@ -103,7 +103,7 @@
 .full-page-discoveries {
   padding: 0 1rem;
 
-  @include viewport.until(md) {
+  @include until(md) {
     padding: 0.25rem 1rem 0 1rem;
   }
 }
@@ -254,17 +254,17 @@
 }
 
 body:not(.has-sidebar-page) {
-  @include viewport.from(md) {
+  @include from(md) {
     @include discoveries-sidebar;
   }
 }
 
 body.has-sidebar-page {
-  @include viewport.from(lg) {
+  @include from(lg) {
     @include discoveries-sidebar;
   }
 
-  @include viewport.between(md, lg) {
+  @include between(md, lg) {
     .ai-search-discoveries__discoveries-wrapper {
       padding-bottom: 0;
     }

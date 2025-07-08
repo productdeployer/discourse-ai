@@ -1,4 +1,4 @@
-@use "lib/viewport";
+@import "lib/viewport";
 
 .composer-ai-helper-modal {
   .inline-diff {
@@ -632,7 +632,7 @@
     height: 7em;
     min-width: var(--ai-caption-popup-min-width);
 
-    @include viewport.until(md) {
+    @include until(md) {
       width: 100%;
       max-width: unset;
       min-width: unset;

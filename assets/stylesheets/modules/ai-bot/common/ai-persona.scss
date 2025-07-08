@@ -1,11 +1,11 @@
-@use "lib/viewport";
+@import "lib/viewport";
 
 .admin-contents .ai-persona-list-editor {
   margin-top: 0;
 }
 
 .ai-persona-list-editor {
-  @include viewport.until(md) {
+  @include until(md) {
     td {
       border: none;
       padding: 0;
