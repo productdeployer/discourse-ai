@@ -1,10 +1,69 @@
-@use "lib/viewport";
-
 // Hide the new question button from the hamburger menu's footer on desktop
 .desktop-view .hamburger-panel .ai-new-question-button {
   display: none;
 }
 
+// Define mixin for viewport-dependent styles
+@mixin viewport-styles {
+  @use "lib/viewport" as v;
+  
+  body.has-ai-conversations-sidebar {
+    @include v.until(lg) {
+      .archetype-private_message .topic-post:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .ai-bot-conversations {
+      .persona-llm-selector {
+        @include v.until(sm) {
+          .select-kit-header-wrapper {
+            font-size: var(--font-down-1);
+          }
+        }
+      }
+
+      &__disclaimer {
+        @include v.from(sm) {
+          width: 80%;
+          max-width: var(--input-max-width);
+        }
+      }
+
+      &__input-wrapper {
+        @include v.from(sm) {
+          width: 80%;
+          max-width: var(--input-max-width);
+        }
+      }
+    }
+
+    @include v.until(sm) {
+      .share-ai-conversation-button {
+        .d-icon {
+          margin: 0;
+        }
+
+        .d-button-label {
+          display: none;
+        }
+      }
+    }
+
+    .topic-map {
+      &__contents {
+        @include v.from(sm) {
+          padding: 0.5em 0.5em 0.5em 1.9em;
+        }
+      }
+    }
+  }
+}
+
+// Apply viewport styles
+@include viewport-styles;
+
+// Rest of your styles
 body.has-ai-conversations-sidebar {
   .ai-new-question-button {
     width: 100%;
@@ -110,12 +169,6 @@ body.has-ai-conversations-sidebar {
     display: none;
   }
 
-  @include viewport.until(lg) {
-    .archetype-private_message .topic-post:last-child {
-      margin-bottom: 0;
-    }
-  }
-
   nav.post-controls .actions button {
     padding: 0.5em 0.65em;
 
@@ -149,12 +202,6 @@ body.has-ai-conversations-sidebar {
         flex-direction: column;
         min-width: 0;
 
-        @include viewport.until(sm) {
-          .select-kit-header-wrapper {
-            font-size: var(--font-down-1);
-          }
-        }
-
         label {
           font-size: var(--font-down-1);
           font-weight: 300;
@@ -164,7 +211,6 @@ body.has-ai-conversations-sidebar {
 
         .name {
           display: block;
-
           @include ellipsis;
         }
       }
@@ -225,11 +271,6 @@ body.has-ai-conversations-sidebar {
 
       &:has(textarea[disabled]) {
         background: var(--primary-very-low);
-      }
-
-      @include viewport.from(sm) {
-        width: 80%;
-        max-width: var(--input-max-width);
       }
 
       &:focus-within {
@@ -342,11 +383,6 @@ body.has-ai-conversations-sidebar {
       font-size: var(--font-down-1);
       color: var(--primary-700);
       margin: 0;
-
-      @include viewport.from(sm) {
-        width: 80%;
-        max-width: var(--input-max-width);
-      }
     }
 
     .sidebar-footer-wrapper {
@@ -370,11 +406,6 @@ body.has-ai-conversations-sidebar {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5em;
-
-      @include viewport.from(sm) {
-        width: 80%;
-        max-width: var(--input-max-width);
-      }
     }
 
     .ai-bot-upload {
@@ -395,18 +426,6 @@ body.has-ai-conversations-sidebar {
         .d-icon {
           color: var(--danger);
         }
-      }
-    }
-  }
-
-  @include viewport.until(sm) {
-    .share-ai-conversation-button {
-      .d-icon {
-        margin: 0;
-      }
-
-      .d-button-label {
-        display: none;
       }
     }
   }
@@ -462,10 +481,6 @@ body.has-ai-conversations-sidebar {
 
     &__contents {
       padding: 0.5em 1.25em;
-
-      @include viewport.from(sm) {
-        padding: 0.5em 0.5em 0.5em 1.9em;
-      }
     }
 
     &__stats {

@@ -1,19 +1,41 @@
-@use "lib/viewport";
+// Define mixin for viewport-dependent styles
+@mixin viewport-styles {
+  @use "lib/viewport" as v;
+  
+  .semantic-search__container {
+    .has-sidebar-page & {
+      @include v.until(lg) {
+        border-top: 1px solid var(--primary-low);
+      }
+    }
 
+    body:not(.has-sidebar-page) & {
+      @include v.until(md) {
+        border-top: 1px solid var(--primary-low);
+      }
+    }
+  }
+
+  @include v.until(md) {
+    .search-container .search-advanced .semantic-search__container {
+      + .search-info {
+        padding-inline: 1rem;
+      }
+
+      &.search-results {
+        margin-bottom: 0;
+        padding-inline: 1rem;
+      }
+    }
+  }
+}
+
+// Apply viewport styles
+@include viewport-styles;
+
+// Rest of your styles
 .semantic-search__container {
   margin: 1rem 0 0 0;
-
-  .has-sidebar-page & {
-    @include viewport.until(lg) {
-      border-top: 1px solid var(--primary-low);
-    }
-  }
-
-  body:not(.has-sidebar-page) & {
-    @include viewport.until(md) {
-      border-top: 1px solid var(--primary-low);
-    }
-  }
 
   .semantic-search__results {
     display: flex;
@@ -87,18 +109,5 @@
   .ai-quick-search-spinner ~ a.clear-search,
   .ai-quick-search-spinner ~ a.show-advanced-search {
     display: none;
-  }
-}
-
-@include viewport.until(md) {
-  .search-container .search-advanced .semantic-search__container {
-    + .search-info {
-      padding-inline: 1rem;
-    }
-
-    &.search-results {
-      margin-bottom: 0;
-      padding-inline: 1rem;
-    }
   }
 }

@@ -1,4 +1,20 @@
-@use "lib/viewport";
+// Define mixin for viewport-dependent styles
+@mixin viewport-styles {
+  @use "lib/viewport" as v;
+  
+  .ai-caption-popup {
+    textarea {
+      @include v.until(md) {
+        width: 100%;
+        max-width: unset;
+        min-width: unset;
+      }
+    }
+  }
+}
+
+// Apply viewport styles
+@include viewport-styles;
 
 .composer-ai-helper-modal {
   .inline-diff {

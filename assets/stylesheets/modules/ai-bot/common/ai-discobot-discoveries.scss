@@ -1,15 +1,58 @@
-@use "lib/viewport";
-
 @keyframes fade-in {
   from {
     opacity: 0;
   }
-
   to {
     opacity: 1;
   }
 }
 
+// Define mixin for viewport-dependent styles
+@mixin viewport-styles {
+  @use "lib/viewport" as v;
+  
+  .full-page-discoveries {
+    @include v.until(md) {
+      padding: 0.25rem 1rem 0 1rem;
+    }
+  }
+  
+  body:not(.has-sidebar-page) {
+    @include v.from(md) {
+      @include discoveries-sidebar;
+    }
+  }
+  
+  body.has-sidebar-page {
+    @include v.from(lg) {
+      @include discoveries-sidebar;
+    }
+  
+    @include v.between(md, lg) {
+      .ai-search-discoveries__discoveries-wrapper {
+        padding-bottom: 0;
+      }
+  
+      .ai-search-discoveries__discoveries-title {
+        padding-top: 1rem;
+      }
+  
+      .search-container .search-advanced .search-info,
+      .semantic-search__container.search-results {
+        padding-inline: 10%;
+      }
+  
+      .full-page-discoveries {
+        padding-inline: 10%;
+      }
+    }
+  }
+}
+
+// Apply viewport styles
+@include viewport-styles;
+
+// Rest of your styles
 .ai-search-discoveries {
   &__regular-results-title {
     margin-top: 0.5em;
@@ -102,10 +145,6 @@
 
 .full-page-discoveries {
   padding: 0 1rem;
-
-  @include viewport.until(md) {
-    padding: 0.25rem 1rem 0 1rem;
-  }
 }
 
 .d-icon-discobot {
@@ -249,37 +288,6 @@
       .cooked {
         color: var(--primary-high);
       }
-    }
-  }
-}
-
-body:not(.has-sidebar-page) {
-  @include viewport.from(md) {
-    @include discoveries-sidebar;
-  }
-}
-
-body.has-sidebar-page {
-  @include viewport.from(lg) {
-    @include discoveries-sidebar;
-  }
-
-  @include viewport.between(md, lg) {
-    .ai-search-discoveries__discoveries-wrapper {
-      padding-bottom: 0;
-    }
-
-    .ai-search-discoveries__discoveries-title {
-      padding-top: 1rem;
-    }
-
-    .search-container .search-advanced .search-info,
-    .semantic-search__container.search-results {
-      padding-inline: 10%;
-    }
-
-    .full-page-discoveries {
-      padding-inline: 10%;
     }
   }
 }

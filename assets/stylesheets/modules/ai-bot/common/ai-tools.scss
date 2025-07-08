@@ -1,5 +1,4 @@
-@use "lib/viewport";
-
+// Define your styles first
 .ai-tool-parameter {
   padding: 1.5em;
   border: 1px solid var(--primary-low-mid);
@@ -28,10 +27,22 @@
   }
 }
 
-.ai-tool-editor {
-  @include viewport.from(lg) {
-    max-width: 80%;
+// Wrap the viewport-dependent styles in a mixin
+@mixin viewport-styles {
+  @use "lib/viewport" as v;
+  
+  .ai-tool-editor {
+    @include v.from(lg) {
+      max-width: 80%;
+    }
   }
+}
+
+// Apply the viewport styles
+@include viewport-styles;
+
+// Continue with other styles
+.ai-tool-editor {
   position: relative;
 
   #control-rag_uploads .rag-uploader {

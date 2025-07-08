@@ -1,28 +1,37 @@
-@use "lib/viewport";
-
 .admin-contents .ai-persona-list-editor {
   margin-top: 0;
 }
 
-.ai-persona-list-editor {
-  @include viewport.until(md) {
-    td {
-      border: none;
-      padding: 0;
+// Define a mixin for viewport-dependent styles
+@mixin viewport-styles {
+  @use "lib/viewport" as v;
+  
+  .ai-persona-list-editor {
+    @include v.until(md) {
+      td {
+        border: none;
+        padding: 0;
 
-      &.d-admin-row__llms,
-      &.d-admin-row__features {
-        padding-block: 0;
+        &.d-admin-row__llms,
+        &.d-admin-row__features {
+          padding-block: 0;
 
-        .--card-label {
-          display: inline-block;
-          font-size: var(--font-down-1);
-          color: var(--primary-high);
+          .--card-label {
+            display: inline-block;
+            font-size: var(--font-down-1);
+            color: var(--primary-high);
+          }
         }
       }
     }
   }
+}
 
+// Apply the viewport styles
+@include viewport-styles;
+
+// Continue with the rest of your styles
+.ai-persona-list-editor {
   &__header {
     display: flex;
     justify-content: space-between;
