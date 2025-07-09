@@ -22,13 +22,13 @@ $breakpoints: (
 }
 
 @mixin until($bp) {
-  @media (max-width: #{_get-breakpoint($bp) - 0.02px}) {
+  @media (max-width: #{_get-breakpoint($bp)  }) {
     @content;
   }
 }
 
 @mixin between($from, $until) {
-  @media (min-width: #{_get-breakpoint($from)}) and (max-width: #{_get-breakpoint($until) - 0.02px}) {
+  @media (min-width: #{_get-breakpoint($from)}) and (max-width: #{_get-breakpoint($until)  }) {
     @content;
   }
 }
